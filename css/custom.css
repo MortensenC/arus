@@ -1,0 +1,15 @@
+/***************************
+Add your custom styles below
+****************************/
+
+    	.fat{
+line-height: 0;
+    font-size: 21px;
+    font-family: 'Anton', sans-serif;
+
+}
+.thin{
+  font-family: 'Raleway', sans-serif;
+
+}
+
