@@ -1,6 +1,6 @@
 module.exports = {
 	// port: process.env.PORT,
-  port: 3002
+  port: process.env.PORT
 
 	// sendgridApiKey: process.env.SENDGRID_API_KEY,
 	// enableRateLimit: process.env.ENABLE_RATE_LIMIT,
