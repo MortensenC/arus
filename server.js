@@ -222,6 +222,11 @@ app.get('/blog', function(req, res) {
     res.sendFile(path.join(__dirname + '/blog.html'));
 });
 
+
+app.get('/education-article', function(req, res) {
+    res.sendFile(path.join(__dirname + '/education-article.html'));
+});
+
 // app.get('/BizPitchForm', function(req, res) {
 //     res.sendFile(path.join(__dirname + '/form.html'));
 // });
