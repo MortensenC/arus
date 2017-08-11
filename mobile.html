@@ -173,21 +173,21 @@
                               Get Educated. Deploy Results.
                            </p>
                         </div>
-                        <form action="http://mrareco.createsend.com/t/d/s/kieth/" method="post" id="subForm" data-error="Please fill all fields correctly." data-success="Thanks for reaching out! We will ge back to you soon!">
+                        <form action="api/contactus" method="post" id="subForm" data-error="Please fill all fields correctly." data-success="Thanks for reaching out! We will ge back to you soon!">
                            <div class="input-with-icon">
                               <label for="fieldName">Your Name</label>
                               <i class="icon icon-Male-2"></i>
-                              <input id="fieldName" name="cm-name" type="text">
+                              <input class="validate-required" id="fieldName" name="name" type="text">
                            </div>
                            <div class="input-with-icon">
                               <label for="fieldEmail">Email Address</label>
                               <i class="icon icon-Mail-2"></i>
-                              <input class="validate-required validate-email" id="fieldEmail" name="cm-kieth-kieth" type="email" required="">
+                              <input class="validate-required validate-email" id="fieldEmail" name="email" type="email" required="">
                            </div>
                            <div class="input-with-icon">
                               <label for="fieldName">About your needs</label>
                               <i class="icon icon-Idea"></i>
-                              <input id="fieldName" name="cm-name" type="text">
+                              <input class="validate-required" id="fieldMessage" name="message" type="text">
                            </div>
                            <button type="submit">Send</button>
                         </form>

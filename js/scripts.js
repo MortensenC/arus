@@ -349,7 +349,7 @@ mr = (function (mr, $, window, document){
         
         //////////////// Handle Form Submit
 
-        $('form.form-email, form[action*="list-manage.com"], form[action*="createsend.com"]').attr('novalidate', true).unbind('submit').on('submit', mr.forms.submit);
+        $('form.form-email, form[action*="list-manage.com"], form[action*="createsend.com"], form[action*="api/contactus"]').attr('novalidate', true).unbind('submit').on('submit', mr.forms.submit);
 
         //////////////// Handle Form Submit
         $(document).on('change, input, paste, keyup', '.attempted-submit .field-error', function(){
@@ -485,7 +485,7 @@ mr = (function (mr, $, window, document){
                     success: function(response) {
                         // Swiftmailer always sends back a number representing number of emails sent.
                         // If this is numeric (not Swift Mailer error text) AND greater than 0 then show success message.
-debugger;
+
                         submitButton.removeClass('btn--loading');
 
                         if ($.isNumeric(response)) {
@@ -511,7 +511,6 @@ debugger;
                         }
                     },
                     error: function(errorObject, errorText, errorHTTP) {
-                        debugger;
                         // Keep the current error text in a data attribute on the form
                         formError.attr('original-error', formError.text());
                         // Show the error with the returned error text.
