@@ -1,6 +1,8 @@
 module.exports = {
 	// port: process.env.PORT,
-  port: process.env.PORT
+  port: process.env.PORT,
+  sendgridApiKey: process.env.SENDGRID_API_KEY,
+  adminEmail: process.env.ADMIN_EMAIL
 
 	// sendgridApiKey: process.env.SENDGRID_API_KEY,
 	// enableRateLimit: process.env.ENABLE_RATE_LIMIT,
