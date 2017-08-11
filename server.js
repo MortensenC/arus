@@ -2,14 +2,20 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
-var sendgrid = require('sendgrid');
-// var RateLimit = require('express-rate-limit');
+var RateLimit = require('express-rate-limit');
 var fs = require('fs');
 var config = require('./config');
+var sendgrid = require('sendgrid');
 // var mysql = require('mysql');
 // var json2csv = require('json2csv');
 
 var port = config.port || 3002
+
+var limiter = new RateLimit({
+  windowMs: 10*60*1000, // 10 minutes
+  max: 3, // limit each IP to 3 requests per windowMs
+  delayMs: 0 // disable delaying - full speed until the max limit is reached
+});
 
 
 // function DB() {
@@ -227,6 +233,41 @@ app.get('/education-article', function(req, res) {
     res.sendFile(path.join(__dirname + '/education-article.html'));
 });
 
+
+app.post('/api/contactus', function(req, res) {
+	var client = sendgrid(config.sendgridApiKey);
+	var helper = sendgrid.mail;
+
+	var mail = new helper.Mail(
+        new helper.Email("info@ahoybvi.com"),
+        "Contact form from Ahoy",
+        new helper.Email(config.adminEmail || "patrick.ortell@arus.io"),
+        new helper.Content("text/html", "<p>Name: " + req.body.name + "</p><p>Email: " + req.body.email + "</p><p>Telephone: " + req.body.telephone + "</p><p>Message: " + req.body.message + "</p>")
+    );
+
+    const request = client.emptyRequest({
+        method: 'POST',
+        path: '/v3/mail/send',
+        body: mail.toJSON()
+    });
+
+    return new Promise((resolve, reject) => {
+        client.API(request, function (error, response) {
+            if (response.statusCode == 202) {
+                resolve({ success: true });
+            } else {
+            	reject();
+                console.log(error.response.body.errors);
+            }
+        });
+    }).then(() => {
+    	res.status(200).send("1");
+    }).catch((e) => {
+    	console.log(e);
+    	res.status(400).send("There was an error");
+    });
+})
+
 // app.get('/BizPitchForm', function(req, res) {
 //     res.sendFile(path.join(__dirname + '/form.html'));
 // });
@@ -404,7 +445,8 @@ app.use('/fonts', express.static('fonts'))
 app.use('/img', express.static('img'))
 
 
-
 app.listen(port, function() {
 	console.log("Listening on port " + port)
 });
+
+

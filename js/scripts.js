@@ -480,12 +480,12 @@ mr = (function (mr, $, window, document){
 
                 jQuery.ajax({
                     type: "POST",
-                    url: "mail/mail.php",
+                    url: e.target.action,
                     data: thisForm.serialize()+"&url="+window.location.href,
                     success: function(response) {
                         // Swiftmailer always sends back a number representing number of emails sent.
                         // If this is numeric (not Swift Mailer error text) AND greater than 0 then show success message.
-
+debugger;
                         submitButton.removeClass('btn--loading');
 
                         if ($.isNumeric(response)) {
@@ -511,6 +511,7 @@ mr = (function (mr, $, window, document){
                         }
                     },
                     error: function(errorObject, errorText, errorHTTP) {
+                        debugger;
                         // Keep the current error text in a data attribute on the form
                         formError.attr('original-error', formError.text());
                         // Show the error with the returned error text.

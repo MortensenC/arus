@@ -68,3 +68,5 @@ typings/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+config/config.env

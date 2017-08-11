@@ -33,7 +33,7 @@
     "json2csv": "^3.7.3",
     "node-mysql": "^0.4.2",
     "pg": "^6.1.2",
-    "sendgrid": "^4.7.1",
+    "sendgrid": "^4.10.0",
     "sequelize": "^3.27.0",
     "webpack": "^1.14.0"
   }
