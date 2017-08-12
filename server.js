@@ -234,6 +234,11 @@ app.get('/education-article', function(req, res) {
 });
 
 
+app.get('/sitemap', function(req, res) {
+    res.sendFile(path.join(__dirname + '/sitemap.xml'));
+});
+
+
 app.post('/api/contactus', function(req, res) {
 
 	var client = sendgrid(config.sendgridApiKey);
@@ -449,5 +454,3 @@ app.use('/img', express.static('img'))
 app.listen(port, function() {
 	console.log("Listening on port " + port)
 });
-
-
