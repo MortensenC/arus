@@ -215,6 +215,10 @@ app.get('/web-apps', function(req, res) {
     res.sendFile(path.join(__dirname + '/webapp.html'));
 });
 
+app.get('/small-business-websites', function(req, res) {
+    res.sendFile(path.join(__dirname + '/small-business-websites.html'));
+});
+
 
 app.get('/consultancy', function(req, res) {
     res.sendFile(path.join(__dirname + '/consultancy.html'));
@@ -242,6 +246,7 @@ app.get('/sitemap', function(req, res) {
 app.get('/community-promotion', function(req, res) {
     res.sendFile(path.join(__dirname + '/community-promotion.html'));
 });
+
 
 
 app.post('/api/contactus', function(req, res) {
