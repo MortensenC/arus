@@ -239,6 +239,11 @@ app.get('/sitemap', function(req, res) {
 });
 
 
+app.get('/community-promotion', function(req, res) {
+    res.sendFile(path.join(__dirname + '/community-promotion.html'));
+});
+
+
 app.post('/api/contactus', function(req, res) {
 
 	var client = sendgrid(config.sendgridApiKey);
