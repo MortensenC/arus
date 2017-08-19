@@ -9,11 +9,13 @@ var sendgrid = require('sendgrid');
 // var mysql = require('mysql');
 // var json2csv = require('json2csv');
 
+var twilioService = require('./app/twilio.service');
+
 var port = config.port || 3002
 
 var limiter = new RateLimit({
-  windowMs: 10*60*1000, // 10 minutes
-  max: 3, // limit each IP to 3 requests per windowMs
+  windowMs: 60*60*1000, // 60 minutes
+  max: 4, // limit each IP to 4 requests per windowMs
   delayMs: 0 // disable delaying - full speed until the max limit is reached
 });
 
@@ -281,6 +283,58 @@ app.post('/api/contactus', function(req, res) {
     }).catch((e) => {
     	console.log(e);
     	res.status(400).send("There was an error");
+    });
+})
+
+if (config.enableRateLimit) {
+    app.use('/api/communitypromotion', limiter);
+}
+app.post('/api/communitypromotion', function(req, res) {
+
+    var client = sendgrid(config.sendgridApiKey);
+    var helper = sendgrid.mail;
+
+    var mail = new helper.Mail(
+        new helper.Email("info@ahoybvi.com"),
+        "Community promotion form from Ahoy",
+        new helper.Email(config.adminEmail || "patrick.ortell@arus.io"),
+        new helper.Content("text/html", `
+            <p>Name: ${req.body.name}</p>
+            <p>Email: ${req.body.email}</p>
+            <p>Telephone: ${req.body.telephone}</p>
+            <p>Idea: ${req.body.idea}</p>`)
+    );
+
+    const request = client.emptyRequest({
+        method: 'POST',
+        path: '/v3/mail/send',
+        body: mail.toJSON()
+    });
+
+    return new Promise((resolve, reject) => {
+        client.API(request, function (error, response) {
+            if (response.statusCode == 202) {
+                resolve({ success: true });
+            } else {
+                reject();
+                console.log(error.response.body.errors);
+            }
+        });
+    }).then(() => {
+        res.status(200).send("1");
+        try {
+            var phone = req.body.telephone;
+            phone = phone.startsWith('+1') ? phone.slice(2) : phone;
+            if (phone.match(/\D/g) || phone.length !== 10) {
+                throw new Error('invalid phone'); 
+            }
+            twilioService.sendTextWithGif('+1' + phone, "Thank you "+req.body.name+"! Don't forget to like our Facebook page! https://www.facebook.com/ahoybvi/", "fuckyeah");
+        } catch(e) {
+            console.log("MESSAGING ERROR", e);
+        }
+    }).catch((e) => {
+        console.log(e);
+        res.status(400).send("There was an error");
     });
 })
 
