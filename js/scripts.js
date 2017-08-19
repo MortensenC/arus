@@ -349,7 +349,7 @@ mr = (function (mr, $, window, document){
         
         //////////////// Handle Form Submit
 
-        $('form.form-email, form[action*="list-manage.com"], form[action*="createsend.com"], form[action*="api/contactus"]').attr('novalidate', true).unbind('submit').on('submit', mr.forms.submit);
+        $('form.form-email, form[action*="list-manage.com"], form[action*="createsend.com"], form[action*="api/contactus"], form[action*="api/communitypromotion"]').attr('novalidate', true).unbind('submit').on('submit', mr.forms.submit);
 
         //////////////// Handle Form Submit
         $(document).on('change, input, paste, keyup', '.attempted-submit .field-error', function(){
