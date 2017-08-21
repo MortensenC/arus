@@ -81,7 +81,7 @@ app.post('/api/contactus', function(req, res) {
 	var mail = new helper.Mail(
         new helper.Email("info@ahoybvi.com"),
         "Contact form from Ahoy",
-        new helper.Email(config.adminEmail || "info@ahoybvi.com"),
+        new helper.Email(config.adminEmail || "patrick.ortell@arus.io"),
         new helper.Content("text/html", "<p>Name: " + req.body.name + "</p><p>Email: " + req.body.email + "</p><p>Telephone: " + req.body.telephone + "</p><p>Message: " + req.body.message + "</p>")
     );
 
@@ -119,7 +119,7 @@ app.post('/api/communitypromotion', function(req, res) {
     var mail = new helper.Mail(
         new helper.Email("info@ahoybvi.com"),
         "Community promotion form from Ahoy",
-        new helper.Email(config.adminEmail || "info@ahoybvi.com"),
+        new helper.Email(config.adminEmail || "patrick.ortell@arus.io"),
         new helper.Content("text/html", `
             <p>Name: ${req.body.name}</p>
             <p>Email: ${req.body.email}</p>
