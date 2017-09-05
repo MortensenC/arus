@@ -36,6 +36,9 @@
 /**!**************/
 /**!**************/
 /**! 1. Reset **/
+
+
+
 *,
 h1,
 h2,
@@ -1318,7 +1321,6 @@ nav {
   line-height: 62px;
 }
 .nav-bar .logo {
-  max-height: 40%;
   margin: 0;
 }
 .nav-bar .nav-module {
