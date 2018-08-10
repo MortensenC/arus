@@ -31,7 +31,7 @@ app.get('/process', function(req, res) {
     res.sendFile(path.join(__dirname + '/process.html'));
 });
 
-app.get('/mobile-apps', function(req, res) {
+app.get('/Custom-software', function(req, res) {
     res.sendFile(path.join(__dirname + '/mobile.html'));
 });
 
