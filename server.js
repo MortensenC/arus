@@ -44,7 +44,7 @@ app.get('/small-business-websites', function(req, res) {
 });
 
 
-app.get('/consultancy', function(req, res) {
+app.get('/Agile', function(req, res) {
     res.sendFile(path.join(__dirname + '/consultancy.html'));
 });
 
