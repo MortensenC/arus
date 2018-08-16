@@ -31,20 +31,20 @@ app.get('/process', function(req, res) {
     res.sendFile(path.join(__dirname + '/process.html'));
 });
 
-app.get('/mobile-apps', function(req, res) {
+app.get('/Custom-software', function(req, res) {
     res.sendFile(path.join(__dirname + '/mobile.html'));
 });
 
-app.get('/web-apps', function(req, res) {
+app.get('/Blockchain', function(req, res) {
     res.sendFile(path.join(__dirname + '/webapp.html'));
 });
 
-app.get('/small-business-websites', function(req, res) {
+app.get('/Devops', function(req, res) {
     res.sendFile(path.join(__dirname + '/small-business-websites.html'));
 });
 
 
-app.get('/consultancy', function(req, res) {
+app.get('/Agile', function(req, res) {
     res.sendFile(path.join(__dirname + '/consultancy.html'));
 });
 
