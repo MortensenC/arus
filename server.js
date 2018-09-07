@@ -27,49 +27,35 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-app.get('/process', function(req, res) {
-    res.sendFile(path.join(__dirname + '/process.html'));
-});
-
 app.get('/Custom-software', function(req, res) {
-    res.sendFile(path.join(__dirname + '/mobile.html'));
+    res.sendFile(path.join(__dirname + '/custom-software.html'));
 });
 
 app.get('/Blockchain', function(req, res) {
-    res.sendFile(path.join(__dirname + '/webapp.html'));
+    res.sendFile(path.join(__dirname + '/blockchain.html'));
 });
 
 app.get('/Devops', function(req, res) {
-    res.sendFile(path.join(__dirname + '/small-business-websites.html'));
+    res.sendFile(path.join(__dirname + '/devops.html'));
 });
 
 
 app.get('/Agile', function(req, res) {
-    res.sendFile(path.join(__dirname + '/consultancy.html'));
+    res.sendFile(path.join(__dirname + '/agile.html'));
 });
 
 app.get('/contact-us', function(req, res) {
     res.sendFile(path.join(__dirname + '/contact.html'));
 });
 
-app.get('/blog', function(req, res) {
-    res.sendFile(path.join(__dirname + '/blog.html'));
-});
-
-
-app.get('/education-article', function(req, res) {
-    res.sendFile(path.join(__dirname + '/education-article.html'));
-});
-
-
 app.get('/sitemap', function(req, res) {
     res.sendFile(path.join(__dirname + '/sitemap.xml'));
 });
 
 
-app.get('/community-promotion', function(req, res) {
-    res.sendFile(path.join(__dirname + '/community-promotion.html'));
-});
+// app.get('/community-promotion', function(req, res) {
+//     res.sendFile(path.join(__dirname + '/community-promotion.html'));
+// });
 
 
 
@@ -79,8 +65,8 @@ app.post('/api/contactus', function(req, res) {
 	var helper = sendgrid.mail;
 
 	var mail = new helper.Mail(
-        new helper.Email("info@ahoybvi.com"),
-        "Contact form from Ahoy",
+        new helper.Email("patrick.ortell@arus.io"),
+        "Contact form from Arus",
         new helper.Email(config.adminEmail || "patrick.ortell@arus.io"),
         new helper.Content("text/html", "<p>Name: " + req.body.name + "</p><p>Email: " + req.body.email + "</p><p>Telephone: " + req.body.telephone + "</p><p>Message: " + req.body.message + "</p>")
     );
@@ -117,8 +103,8 @@ app.post('/api/communitypromotion', function(req, res) {
     var helper = sendgrid.mail;
 
     var mail = new helper.Mail(
-        new helper.Email("info@ahoybvi.com"),
-        "Community promotion form from Ahoy",
+        new helper.Email("patrick.ortell@arus.io"),
+        "Community promotion form from Arus",
         new helper.Email(config.adminEmail || "patrick.ortell@arus.io"),
         new helper.Content("text/html", `
             <p>Name: ${req.body.name}</p>
